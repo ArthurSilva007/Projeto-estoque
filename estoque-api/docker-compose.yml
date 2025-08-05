@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: oficina-db-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root          # Senha do usuário root
+      MYSQL_DATABASE: oficina_estoque    # Nome do banco de dados a ser criado
+      MYSQL_USER: admin                  # Usuário que vamos usar na aplicação
+      MYSQL_PASSWORD: Stark2025!            # Senha do usuário da aplicação
+    ports:
+      - "3306:3306" # Porta padrão do MySQL
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
