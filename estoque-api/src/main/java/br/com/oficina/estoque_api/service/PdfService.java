@@ -31,7 +31,8 @@ public class PdfService {
             // --- INFORMAÇÕES DA OFICINA ---
             Paragraph infoOficina = new Paragraph();
             infoOficina.add(new Chunk("INFINIR AUTO AR\n"));
-            infoOficina.add(new Chunk("Rua das Peças, 123 - Bairro Motor\n"));
+            infoOficina.add(new Chunk("Rua barão de triunfo, 180-250 - Mauricio de Nassau\n"));
+            infoOficina.add(new Chunk("Terceira Travessa Joaquim Nabuco, 10a - São Bento do Una\n"));
             infoOficina.add(new Chunk("Telefone: (81) 99821-0386\n\n"));
             document.add(infoOficina);
 

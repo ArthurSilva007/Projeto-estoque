@@ -18,4 +18,10 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")
     private List<Venda> vendas;
+
+    @Column(name = "telefone")
+    private String telefone;
+
+    @Column(name = "cnpj")
+    private String cnpj;
 }

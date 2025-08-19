@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/vendas")
 @RequiredArgsConstructor
@@ -32,5 +34,10 @@ public class VendaController {
         headers.setContentDispositionFormData("inline", "nota_venda_" + id + ".pdf");
 
         return new ResponseEntity<>(pdf, headers, HttpStatus.OK);
+    }
+    @GetMapping
+    public ResponseEntity<List<VendaResponseDTO>> listarVendas() {
+        List<VendaResponseDTO> vendas = service.listarTodas();
+        return ResponseEntity.ok(vendas);
     }
 }

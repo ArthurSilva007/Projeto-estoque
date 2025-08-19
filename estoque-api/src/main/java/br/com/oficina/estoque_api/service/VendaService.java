@@ -18,9 +18,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor // <-- ADICIONE ESTA ANOTAÇÃO
+@RequiredArgsConstructor
 public class VendaService {
 
     private final VendaRepository vendaRepository;
@@ -78,6 +79,13 @@ public class VendaService {
         Venda vendaSalva = vendaRepository.save(novaVenda);
 
         return new VendaResponseDTO(vendaSalva);
+    }
+
+    @Transactional(readOnly = true)
+    public List<VendaResponseDTO> listarTodas() {
+        return vendaRepository.findAll().stream()
+                .map(VendaResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }
 

@@ -32,4 +32,13 @@ public class Venda {
     // Uma venda tem uma lista de itens
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
     private List<ItemVenda> itens;
+    @Column(name = "atendente")
+    private String atendente;
+
+    @Column(name = "carro")
+    private String carro;
+
+    @Column(name = "descricao_defeito", columnDefinition = "TEXT")
+    private String descricaoDefeito;
+
 }

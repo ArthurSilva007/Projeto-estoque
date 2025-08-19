@@ -4,7 +4,8 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 public record ProdutoRequestDTO(
-        @NotBlank String descricao,
+        @NotBlank String nome, // ALTERADO de 'descricao' para 'nome'
+        String descricao,      // NOVO CAMPO
         @NotNull @PositiveOrZero Integer quantidadeEstoque,
         @NotNull @Positive BigDecimal valorCompra,
         @NotNull @Positive BigDecimal valorVenda,

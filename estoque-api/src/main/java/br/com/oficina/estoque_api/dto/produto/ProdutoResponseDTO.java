@@ -6,7 +6,8 @@ import java.math.BigDecimal;
 
 public record ProdutoResponseDTO(
         Long id,
-        String descricao,
+        String nome, // ALTERADO de 'descricao' para 'nome'
+        String descricao, // NOVO CAMPO
         Integer quantidadeEstoque,
         BigDecimal valorCompra,
         BigDecimal valorVenda,

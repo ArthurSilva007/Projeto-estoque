@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -38,6 +39,19 @@ public class ProdutoController {
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
+    }
+
+    @GetMapping("/categoria/{id}")
+    public ResponseEntity<List<ProdutoResponseDTO>> listarPorCategoria(@PathVariable Long id) {
+        return ResponseEntity.ok(service.listarPorCategoria(id));
+    }
+
+    @GetMapping("/buscar")
+    public ResponseEntity<List<ProdutoResponseDTO>> buscarProdutos(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) Long categoriaId,
+            @RequestParam(required = false) Integer quantidade) {
+        return ResponseEntity.ok(service.buscar(nome, categoriaId, quantidade));
     }
 
     @PutMapping("/{id}")
