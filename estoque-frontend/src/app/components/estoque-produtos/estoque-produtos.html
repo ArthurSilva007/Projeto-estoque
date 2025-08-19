@@ -1,0 +1,90 @@
+<div class="tela-inteira">
+  <app-navbar></app-navbar>
+
+  <main class="grid-container">
+    <div class="grid-item-container" *ngFor="let categoria of categorias">
+      <div class="grid-item" *ngIf="editandoCategoriaId !== categoria.id" (click)="mostrarProdutos(categoria)">
+        {{ categoria.nome }}
+        <button class="btn-editar" (click)="iniciarEdicao(categoria); $event.stopPropagation()">✎</button>
+      </div>
+      <div class="grid-item-editando" *ngIf="editandoCategoriaId === categoria.id">
+        <input type="text" [(ngModel)]="nomeCategoriaEditada" (keyup.enter)="salvarEdicao(categoria)">
+        <button (click)="salvarEdicao(categoria)">✔</button>
+        <button (click)="cancelarEdicao()">✖</button>
+      </div>
+    </div>
+    <button class="grid-item-adicionar" (click)="abrirFormularioAdd()">
+      Adicionar mais áreas +
+    </button>
+  </main>
+
+  <div class="modal-overlay" *ngIf="exibirFormularioAdd">
+    <div class="modal-content">
+      <h2>Adicionar Nova Categoria</h2>
+      <form (ngSubmit)="salvarNovaCategoria()">
+        <input type="text" placeholder="Nome da Categoria" [(ngModel)]="nomeNovaCategoria" name="nomeCategoria" required>
+        <div class="modal-actions">
+          <button type="button" (click)="fecharFormularioAdd()">Cancelar</button>
+          <button type="submit" class="btn-salvar">Salvar Categoria</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="categoriaSelecionada">
+    <div class="modal-content modal-produtos">
+      <h2>Produtos em "{{ categoriaSelecionada.nome }}"</h2>
+      <div class="tabela-acoes-superiores">
+        <input type="text" class="pesquisar-modal" placeholder="Pesquisar..." [(ngModel)]="termoBuscaModal" (input)="filtrarProdutosModal()">
+        <button class="btn-adicionar-produto" (click)="iniciarAdicaoProduto()">+ Adicionar Produto</button>
+      </div>
+      <div class="tabela-produtos-container">
+        <div class="tabela-header">
+          <div class="header-item nome">Produto</div>
+          <div class="header-item qtd">Qtd</div>
+          <div class="header-item valor">Valor</div>
+          <div class="header-item acoes">Ações</div>
+        </div>
+        <div class="tabela-body">
+          <div class="tabela-row" *ngFor="let produto of produtosFiltradosModal">
+            <div class="row-item nome">
+              <span *ngIf="editandoProdutoId !== produto.id">{{ produto.nome }}</span>
+              <input *ngIf="editandoProdutoId === produto.id" type="text" [(ngModel)]="produtoEditado.nome">
+            </div>
+            <div class="row-item qtd">
+              <span *ngIf="editandoProdutoId !== produto.id">{{ produto.quantidadeEstoque }}</span>
+              <input *ngIf="editandoProdutoId === produto.id" type="number" [(ngModel)]="produtoEditado.quantidadeEstoque">
+            </div>
+            <div class="row-item valor">
+              <span *ngIf="editandoProdutoId !== produto.id">{{ produto.valorVenda | currency:'BRL' }}</span>
+              <input *ngIf="editandoProdutoId === produto.id" type="number" [(ngModel)]="produtoEditado.valorVenda">
+            </div>
+            <div class="row-item acoes">
+              <ng-container *ngIf="editandoProdutoId !== produto.id">
+                <button class="btn-acao-editar" (click)="iniciarEdicaoProduto(produto)">✎</button>
+                <button class="btn-acao-deletar" (click)="deletarProduto(produto.id)">🗑️</button>
+              </ng-container>
+              <ng-container *ngIf="editandoProdutoId === produto.id">
+                <button class="btn-acao-salvar" (click)="salvarEdicaoProduto()">✔</button>
+                <button class="btn-acao-cancelar" (click)="cancelarEdicaoProduto()">✖</button>
+              </ng-container>
+            </div>
+          </div>
+          <div class="tabela-row" *ngIf="adicionandoProduto">
+            <div class="row-item nome"><input type="text" placeholder="Nome" [(ngModel)]="novoProduto.nome"></div>
+            <div class="row-item qtd"><input type="number" placeholder="Qtd" [(ngModel)]="novoProduto.quantidadeEstoque"></div>
+            <div class="row-item valor"><input type="number" placeholder="Valor" [(ngModel)]="novoProduto.valorVenda"></div>
+            <div class="row-item acoes">
+              <button class="btn-acao-salvar" (click)="salvarNovoProduto()">✔</button>
+              <button class="btn-acao-cancelar" (click)="cancelarAdicaoProduto()">✖</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button (click)="fecharJanelaProdutos()">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

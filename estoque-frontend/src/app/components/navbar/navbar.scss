@@ -1,0 +1,36 @@
+.nav-container {
+  background-color: #2c2c2c;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between; // Alinha os grupos nas extremidades
+  align-items: center;
+}
+
+.nav-principal, .nav-atalhos {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  background-color: #444;
+  color: white;
+  border: 1px solid #444;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+// Estilo do botão ativo, aplicado automaticamente pelo routerLinkActive
+button.ativo {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+// Estilo para o botão "Nova Venda" quando ativo, como na sua imagem
+button.ativo[routerLink="/nova-venda"] {
+  background-color: #2c2c2c;
+  color: white;
+  border: 1px solid white;
+}

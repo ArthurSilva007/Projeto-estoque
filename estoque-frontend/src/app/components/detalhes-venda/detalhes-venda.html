@@ -1,0 +1,33 @@
+<div class="tela-container">
+  <app-navbar></app-navbar>
+
+  <main class="lista-detalhes-container">
+    <div class="detalhe-card" *ngFor="let venda of vendasDetalhadas">
+      <div class="coluna">
+        <p>Venda feita para o cliente no dia: {{ venda.dataVenda | date:'dd/MM/yy' }}</p>
+        <p>Às, HORAS | {{ venda.dataVenda | date:'HH:mm:ss' }}</p>
+        <p class="defeito-desc">Carro com defeito: {{ venda.descricaoDefeito }}</p>
+      </div>
+
+      <div class="coluna">
+        <p>Atendente : {{ venda.atendente }}</p>
+        <p>Valor total cobrado : {{ venda.valorTotal | currency:'BRL' }}</p>
+        <p>Cliente: {{ venda.nomeCliente }}</p>
+        <p>Carro: {{ venda.carro }}</p>
+      </div>
+
+      <div class="coluna">
+        <p>Contato do cliente : {{ venda.telefoneCliente }}</p>
+        <p>Numero de atendimento : {{ venda.id }}</p>
+        <p>MEI/CNPJ - {{ venda.cnpjCliente }}</p>
+      </div>
+
+      <div class="coluna-botao">
+        <button (click)="baixarPdf(venda.id)">
+          BAIXAR
+          <span class="icone-download">&#11123;</span>
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,21 @@
+<div class="tela-container">
+  <app-navbar></app-navbar>
+
+  <main class="lista-vendas-container">
+    <div class="venda-card" *ngFor="let venda of historicoDeVendas">
+      <div class="venda-info">
+        <p class="venda-data">
+          Venda realizada | {{ venda.dataVenda | date:'dd / MM / yyyy | HH:mm:ss' }}
+        </p>
+        <p class="venda-detalhes">
+          Cliente : {{ venda.nomeCliente }} | {{ formatarDescricaoItens(venda.itens) }}
+        </p>
+      </div>
+      <button class="btn-baixar" (click)="baixarRelatorio(venda.id)">
+        Baixar Relatório <br>
+        <span>Pdf com Nota e Garantia.</span>
+        <span class="icone-download">&#11123;</span>
+      </button>
+    </div>
+  </main>
+</div>

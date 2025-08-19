@@ -1,0 +1,69 @@
+<div class="tela-container">
+  <app-navbar></app-navbar>
+
+  <div class="acoes-container">
+    <button (click)="abrirFormulario()">+ Adicionar Novo Produto</button>
+  </div>
+
+  <div class="filtros-container">
+    <input type="text" placeholder="Pesquisar por Nome" [(ngModel)]="filtros.nome">
+    <select [(ngModel)]="filtros.categoriaId">
+      <option [ngValue]="null">Todas as Categorias</option>
+      <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nome }}</option>
+    </select>
+    <input type="number" placeholder="Qtd. Exata" [(ngModel)]="filtros.quantidade">
+    <button (click)="aplicarFiltros()">Buscar</button>
+  </div>
+
+  <main class="grid-produtos">
+    <div class="produto-card" *ngFor="let produto of listaProdutosFiltrados">
+      <div class="card-header">
+        <div class="produto-qtd">
+          <span>Qtd</span>
+          <span>{{ produto.quantidadeEstoque }}</span>
+        </div>
+        <!-- ATUALIZADO: Exibe o nome do produto -->
+        <div class="produto-desc">{{ produto.nome }}</div>
+        <div class="produto-valor">
+          <span>Valor</span>
+          <span>{{ produto.valorVenda | currency:'BRL' }}</span>
+        </div>
+        <button class="btn-toggle" (click)="toggleDetalhes(produto.id)">
+          <span [class.rotacionado]="idProdutoExpandido === produto.id">&#9660;</span>
+        </button>
+      </div>
+      <div class="card-detalhes" *ngIf="idProdutoExpandido === produto.id">
+        <h4>Detalhes:</h4>
+        <p><strong>Categoria:</strong> {{ produto.categoria.nome }}</p>
+        <p><strong>Valor de Compra:</strong> {{ produto.valorCompra | currency:'BRL' }}</p>
+        <!-- ATUALIZADO: Exibe a descrição técnica do produto -->
+        <p><strong>Descrição Técnica:</strong> {{ produto.descricao || 'Nenhuma descrição fornecida.' }}</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal do Formulário -->
+  <div class="modal-overlay" *ngIf="exibirFormulario">
+    <div class="modal-content">
+      <h2>Adicionar Novo Produto</h2>
+      <form (ngSubmit)="salvarProduto()">
+        <!-- ATUALIZADO: Campos de Nome e Descrição separados -->
+        <input type="text" placeholder="Nome do Produto" [(ngModel)]="novoProduto.nome" name="nome" required>
+        <textarea placeholder="Descrição Técnica (Opcional)" rows="4" [(ngModel)]="novoProduto.descricao" name="descricao"></textarea>
+
+        <input type="number" placeholder="Quantidade em Estoque" [(ngModel)]="novoProduto.quantidadeEstoque" name="quantidade" required>
+        <input type="number" placeholder="Valor de Compra (Ex: 15.50)" [(ngModel)]="novoProduto.valorCompra" name="valorCompra" required>
+        <input type="number" placeholder="Valor de Venda (Ex: 35.00)" [(ngModel)]="novoProduto.valorVenda" name="valorVenda" required>
+        <select [(ngModel)]="novoProduto.categoriaId" name="categoria" required>
+          <option value="0" disabled>Selecione uma Categoria</option>
+          <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nome }}</option>
+        </select>
+        <div class="modal-actions">
+          <button type="button" (click)="fecharFormulario()">Cancelar</button>
+          <button type="submit" class="btn-salvar">Adicionar Produto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

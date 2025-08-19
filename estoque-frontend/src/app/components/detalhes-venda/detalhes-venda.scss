@@ -1,0 +1,50 @@
+:host {
+  // Estilos gerais (pode copiar da tela anterior)
+  display: block; background-color: #1a1a1a; color: white; height: 100vh;
+  padding: 20px; box-sizing: border-box; font-family: sans-serif;
+}
+.tela-container { display: flex; flex-direction: column; height: 100%; }
+
+.lista-detalhes-container {
+  margin-top: 20px;
+  background-color: #2c2c2c;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.detalhe-card {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr; // 4 colunas com proporções
+  gap: 20px;
+  background-color: #1a1a1a;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  align-items: center;
+
+  .coluna {
+    p { margin: 5px 0; }
+    .defeito-desc { font-style: italic; color: #ccc; }
+  }
+
+  .coluna-botao {
+    button {
+      width: 100%;
+      background-color: #444;
+      color: white;
+      border: 1px solid white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      .icone-download { font-size: 1.5em; }
+    }
+  }
+}

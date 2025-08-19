@@ -1,0 +1,58 @@
+<div class="tela-container">
+  <app-navbar>
+    <button routerLink="/formulario-produto">Formulário de Produto</button>
+    <button class="ativo" routerLink="/nova-venda">Nova Venda</button>
+    <button routerLink="/historia-vendas">História de Vendas</button>
+    <button routerLink="/detalhes-venda">Detalhes da Venda</button>
+    <button routerLink="/estoque">Estoque de Produtos</button>
+  </app-navbar>
+
+  <main class="main-content">
+    <div class="painel-esquerdo">
+      <div class="pesquisa-container">
+        <input type="text" placeholder="Pesquisar Produtos" [(ngModel)]="termoBusca" (input)="filtrarProdutos()">
+      </div>
+      <div class="lista-produtos">
+        <div class="produto-item" *ngFor="let produto of listaProdutosFiltrados">
+          <div class="produto-qtd">
+            <span>Qtd</span>
+            <span>{{ produto.quantidadeEstoque }}</span>
+          </div>
+          <div class="produto-desc">{{ produto.descricao }}</div>
+          <div class="produto-valor">
+            <span>Valor</span>
+            <span>{{ produto.valorVenda | currency:'BRL' }}</span>
+          </div>
+          <button (click)="adicionarProduto(produto)">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="painel-direito">
+      <h3>Pedidos de saída</h3>
+      <div class="pedidos-saida-lista">
+        <div class="pedido-item" *ngFor="let item of itensDaVenda">
+          <input type="number" class="pedido-qtd-input" [(ngModel)]="item.quantidade" min="1" [max]="item.estoqueDisponivel">
+          <span>{{ item.descricao }}</span>
+          <span>{{ item.valorUnitario | currency:'BRL' }}</span>
+        </div>
+      </div>
+      <div class="dados-cliente">
+        <input type="text" placeholder="Nome do Cliente" [(ngModel)]="nomeCliente">
+        <input type="number" placeholder="Valor da Instalação" [(ngModel)]="valorInstalacao">
+      </div>
+      <div class="resumo-total">
+        <span>Total: {{ valorTotalVenda | currency:'BRL' }}</span>
+      </div>
+      <button class="btn-imprimir" (click)="finalizarVenda()">Imprimir</button>
+    </div>
+  </main>
+
+  <app-navbar>
+    <button>F1</button>
+    <button class="ativo">F2</button>
+    <button>F3</button>
+    <button>F4</button>
+    <button>F5</button>
+    </app-navbar>
+</div>
