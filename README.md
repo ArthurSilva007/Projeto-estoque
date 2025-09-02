@@ -1,3 +1,21 @@
+## 🚀 Tecnologias Utilizadas
+
+Esta é a stack completa utilizada no desenvolvimento do projeto:
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Java-17-blue?logo=openjdk&logoColor=white" alt="Java 17" />
+  <img src="https://img.shields.io/badge/Spring_Boot-3.x-green?logo=spring&logoColor=white" alt="Spring Boot" />
+  <img src="https://img.shields.io/badge/Angular-17-red?logo=angular&logoColor=white" alt="Angular 17" />
+  <img src="https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql&logoColor=white" alt="MySQL 8.0" />
+  <img src="https://img.shields.io/badge/TypeScript-blue?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/SCSS-pink?logo=sass&logoColor=white" alt="SCSS" />
+  <img src="https://img.shields.io/badge/Docker-blue?logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/Nginx-green?logo=nginx&logoColor=white" alt="Nginx" />
+  <img src="https://img.shields.io/badge/Maven-red?logo=apachemaven&logoColor=white" alt="Maven" />
+</div>
+
+---
+
 🛍️ Projeto Controle de Estoque
 Este é um projeto Full-Stack de um sistema de gerenciamento de estoque e vendas, ideal para pequenas oficinas ou comércios. A aplicação é dividida em um backend robusto construído com Spring Boot e um frontend reativo desenvolvido em Angular.
 
@@ -43,24 +61,6 @@ MySQL 8.0	Sistema de gerenciamento de banco de dados relacional para armazenar o
 Docker & Docker Compose	Ferramentas de contêinerização para criar, implantar e executar a aplicação em ambientes isolados.
 Nginx	Servidor web de alta performance, utilizado para servir a aplicação Angular de forma otimizada.
 
-## 🚀 Tecnologias Utilizadas
-
-Esta é a stack completa utilizada no desenvolvimento do projeto:
-
-<div align="center">
-  <img src="https://img.shields.io/badge/Java-17-blue?logo=openjdk&logoColor=white" alt="Java 17" />
-  <img src="https://img.shields.io/badge/Spring_Boot-3.x-green?logo=spring&logoColor=white" alt="Spring Boot" />
-  <img src="https://img.shields.io/badge/Angular-17-red?logo=angular&logoColor=white" alt="Angular 17" />
-  <img src="https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql&logoColor=white" alt="MySQL 8.0" />
-  <img src="https://img.shields.io/badge/TypeScript-blue?logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/SCSS-pink?logo=sass&logoColor=white" alt="SCSS" />
-  <img src="https://img.shields.io/badge/Docker-blue?logo=docker&logoColor=white" alt="Docker" />
-  <img src="https://img.shields.io/badge/Nginx-green?logo=nginx&logoColor=white" alt="Nginx" />
-  <img src="https://img.shields.io/badge/Maven-red?logo=apachemaven&logoColor=white" alt="Maven" />
-</div>
-
----
-
 Exportar para as Planilhas
 ⚙️ Como Executar o Projeto
 Com o Docker e o Docker Compose instalados, o projeto pode ser executado com um único comando, pois toda a configuração de ambiente já está definida nos arquivos Dockerfile e docker-compose.yml.
@@ -103,4 +103,5 @@ projeto-estoque/
 │   ├── angular.json
 │   └── Dockerfile
 └── 🐳 docker-compose.yml # Orquestra a subida dos contêineres
+
 
